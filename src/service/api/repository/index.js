@@ -1,14 +1,16 @@
 const mariadb = require('mariadb');
 
-const pool = mariadb.createPool({
-     host: process.env.DATABASE_HOST, 
-     user:'mercafacil', 
-     password: 'senhasecreta123',
-     database: 'db_mercafacil',
-    connectionLimit: 20
-});
+
 
 module.exports.getDbConnection = async function() {
+    const pool = mariadb.createPool({
+        host: process.env.DATABASE_HOST, 
+        user:'mercafacil', 
+        password: 'senhasecreta123',
+        database: 'db_mercafacil',
+       connectionLimit: 20
+   });
+   
     return await pool.getConnection();
 };
 

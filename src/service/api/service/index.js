@@ -9,8 +9,9 @@ const MAX_DATE = new Date(32503679999000);
 const MAX_AGE = 666;
 
 module.exports.addOrUpdateUser = async function(user) {
-    if (!user)
+    if (!user) {
         throw new Error('No User provided');
+    }
 
     if (!user.email)
         throw new Error('Email is a mandatory field');
@@ -184,7 +185,7 @@ module.exports.getWebsiteCursor = async function(cursorParams) {
 module.exports.recordNewVisit = async function(visit) {
     let websitePromise = this.getWebsite({url: visit.website_url});
     let userPromise = this.getUser({email: visit.user_email});
-    
+
     let website = await websitePromise;
     if (!website)
         websitePromise = this.addOrUpdateWebsite({url: visit.website_url});
