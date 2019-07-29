@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+  webapi1:
+    tty: true
+    build: ./src/service
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db          
+
+  webapi2:
+    tty: true
+    build: ./src/service
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+
+  webapi3:
+    tty: true
+    build: ./src/service
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db   
+
+  webapi4:
+    tty: true
+    build: ./src/service
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db 
+
+  webapi5:
+    tty: true
+    build: ./src/service
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db 
+
+  loadbalancer:
+      build: ./load-balancer
+      tty: true
+      links:
+          - webapi1
+          - webapi2
+          - webapi3
+          - webapi4
+          - webapi5
+      ports:
+          - '8666:8666'
+
+  db:
+    build: ./src/db

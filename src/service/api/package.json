@@ -1,0 +1,30 @@
+{
+  "name": "r3m_mercafacil_webservice",
+  "version": "0.0.1",
+  "description": "Projeto do processo seletivo da MercaFácil",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "node index.test",
+    "loadtest": "artillery run ./load-test/artillery.yml"
+  },
+  "keywords": [
+    "mercafacil"
+  ],
+  "author": "Renato Medeiros <renamedrj@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "easygraphql-load-tester": "^0.3.6",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2",
+    "mariadb": "^2.1.0",
+    "url": "^0.11.0",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "tape-async": "^2.3.0"
+  }
+}

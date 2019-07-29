@@ -1,0 +1,206 @@
+mutation NewUser($email :Email!, $gender : Gender!, $name: String, $date_of_birth: Date)
+{
+  upsertUser(email: $email, gender: $gender, name: $name, date_of_birth: $date_of_birth) {
+    id
+    email
+    name
+    gender
+    date_of_birth
+  }
+}
+
+mutation NewWebsite($url: Url!, $topic: Topic) {
+  upsertWebsite(url: $url, topic: $topic){
+    id
+    url
+    topic
+  }
+}
+
+mutation NewVisit($email: Email!, $url: Url!) {
+  newVisit(website_url: $url, user_email: $email) {
+    id
+    timestamp
+    user {
+      id
+      email
+      name
+      gender
+      date_of_birth
+    }
+    website {
+      id
+      url
+      topic
+    }
+  }
+}
+
+query UserById($id: ID!)
+{
+  User(id: $id) {
+    email
+    id
+    name
+    gender
+    date_of_birth
+  }
+}
+
+query UserByEmail($email: Email!)
+{
+  UserByEmail(email: $email) {
+    email
+    id
+    name
+    gender
+    date_of_birth
+  }
+}
+
+query Users {
+  Users(sort_field: "email", sort_order: "ASC") {
+    id
+    email
+    name
+    gender
+    date_of_birth
+  }
+}
+
+query WebsiteById($id: ID!)
+{
+  Website(id: $id) {
+    id
+    url
+    topic
+  }
+}
+
+query WebsiteByUrl($url: Url!)
+{
+  WebsiteByUrl(url: $url) {
+    id
+    url
+    topic
+  }
+}
+
+query Websites {
+  Websites(limit:3, sort_field: "topic", sort_order: "DESC") {
+    url,
+    id,
+    topic
+  }
+}
+
+query StatsTotal {
+  StatsTotal(initial_timestamp: "2019-07-28T23:42:50.000Z") {
+    users_count
+    websites_count
+    visits_count
+    users {
+      email
+      id
+      name
+      gender
+      date_of_birth
+      
+    }
+    websites {
+      url
+      id
+      topic
+    }
+    visits {
+      id
+      timestamp
+      user {
+        id
+        email
+        name
+        gender
+        date_of_birth
+      }
+      website {
+        id
+        url
+        topic
+      }
+    }
+  }
+}
+
+query StatsTotalPorWebsite {
+  StatsByWebsite(min_age: 12) {
+    users_count
+    websites_count
+    visits_count
+    users {
+      email
+      id
+      name
+      gender
+      date_of_birth
+      
+    }
+    websites {
+      url
+      id
+      topic
+    }
+    visits {
+      id
+      timestamp
+      user {
+        id
+        email
+        name
+        gender
+        date_of_birth
+      }
+      website {
+        id
+        url
+        topic
+      }
+    }
+  }
+}
+
+query StatsTotalPorUser {
+  StatsByUser {
+    users_count
+    websites_count
+    visits_count
+    users {
+      email
+      id
+      name
+      gender
+      date_of_birth
+      
+    }
+    websites {
+      url
+      id
+      topic
+    }
+    visits {
+      id
+      timestamp
+      user {
+        id
+        email
+        name
+        gender
+        date_of_birth
+      }
+      website {
+        id
+        url
+        topic
+      }
+    }
+  }
+}
