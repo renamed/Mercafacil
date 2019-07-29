@@ -2,6 +2,8 @@
 
 echo 'Rodando testes unitários'
 cd src/service/api
+npm install
+
 npm test
 
 echo '5 segundos para ver o resultado dos testes. Contando...'
